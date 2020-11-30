@@ -37,3 +37,21 @@
 >
   Cambiar
 </button>
+
+<br /><br />
+<h3>Proces Asíncrono</h3>
+
+<button
+  (click)="ejecutar()"
+  type="button"
+  name="button"
+  class="btn btn-primary"
+  [disabled]="loading"
+>
+  <i
+    [ngClass]="{ 'fa-save': !loading, 'fa-refresh fa-spin': loading }"
+    class="fa fa-save"
+  ></i>
+  <span *ngIf="!loading"> Guardar cambios</span>
+  <span *ngIf="loading"> Espere por favor</span>
+</button>
