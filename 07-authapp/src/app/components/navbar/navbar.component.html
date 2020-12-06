@@ -16,12 +16,14 @@
       <button
         *ngIf="!(authService.isAuthenticated$ | async)"
         class="btn btn-outline-primary"
+        (click)="authService.loginWithRedirect()"
       >
         Ingresar
       </button>
       <button
         *ngIf="authService.isAuthenticated$ | async"
         class="btn btn-outline-danger"
+        (click)="authService.logout()"
       >
         Salir
       </button>
