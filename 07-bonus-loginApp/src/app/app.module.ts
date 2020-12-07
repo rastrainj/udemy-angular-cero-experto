@@ -10,6 +10,8 @@ import { RegistroComponent } from "./pages/registro/registro.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,13 @@ import { LoginComponent } from "./pages/login/login.component";
     HomeComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    SweetAlert2Module,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
