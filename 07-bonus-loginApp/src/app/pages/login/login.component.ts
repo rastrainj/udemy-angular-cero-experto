@@ -12,9 +12,16 @@ import { UsuarioModel } from "../../models/usuario.model";
 })
 export class LoginComponent implements OnInit {
   usuario: UsuarioModel = new UsuarioModel();
+  recordarme = false;
+
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (localStorage.getItem("email")) {
+      this.usuario.email = localStorage.getItem("email");
+      this.recordarme = true;
+    }
+  }
 
   login(form: NgForm) {
     if (form.invalid) {
@@ -31,6 +38,10 @@ export class LoginComponent implements OnInit {
       (resp) => {
         console.log(resp);
         // Swal.close();
+
+        if (this.recordarme) {
+          localStorage.setItem("email", this.usuario.email);
+        }
         this.router.navigateByUrl("/home");
       },
       (err) => {
