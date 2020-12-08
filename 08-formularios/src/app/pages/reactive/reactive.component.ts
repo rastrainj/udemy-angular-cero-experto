@@ -38,6 +38,12 @@ export class ReactiveComponent implements OnInit {
     return this.form.get('correo')?.invalid && this.form.get('correo')?.touched;
   }
 
+  get usuarioNoValido(): boolean | undefined {
+    return (
+      this.form.get('usuario')?.invalid && this.form.get('usuario')?.touched
+    );
+  }
+
   get distritoNoValido(): boolean | undefined {
     return (
       this.form.get('direccion.distrito')?.invalid &&
@@ -75,6 +81,7 @@ export class ReactiveComponent implements OnInit {
             Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
           ],
         ],
+        usuario: ['', , this.validadores.existeUsuario],
         pass1: ['', Validators.required],
         pass2: ['', Validators.required],
         direccion: this.fb.group({
@@ -94,6 +101,8 @@ export class ReactiveComponent implements OnInit {
       nombre: 'Juanan',
       apellido: 'Pérez',
       correo: 'juanan@mail.com',
+      pass1: '123',
+      pass2: '123',
       direccion: {
         distrito: 'Ontario',
         ciudad: 'Ottawa',
