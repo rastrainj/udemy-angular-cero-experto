@@ -15,7 +15,21 @@ export class ReactiveComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  crearFormulario() {
+  get nombreNoValido(): boolean | undefined {
+    return this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched;
+  }
+
+  get apellidoNoValido(): boolean | undefined {
+    return (
+      this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched
+    );
+  }
+
+  get correoNoValido(): boolean | undefined {
+    return this.form.get('correo')?.invalid && this.form.get('correo')?.touched;
+  }
+
+  crearFormulario(): void {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(5)]],
       apellido: ['', Validators.required],
@@ -29,7 +43,13 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
-  guardar() {
+  guardar(): void {
     console.log(this.form);
+
+    if (this.form.invalid) {
+      Object.values(this.form.controls).forEach((control) =>
+        control.markAsTouched()
+      );
+    }
   }
 }
