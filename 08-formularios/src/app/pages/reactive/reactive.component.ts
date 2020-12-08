@@ -52,23 +52,41 @@ export class ReactiveComponent implements OnInit {
     );
   }
 
+  get pass1NoValido(): boolean | undefined {
+    return this.form.get('pass1')?.invalid && this.form.get('pass2')?.touched;
+  }
+
+  get pass2NoValido(): boolean | undefined {
+    const pass1 = this.form.get('pass1')?.value;
+    const pass2 = this.form.get('pass2')?.value;
+
+    return pass1 === pass2 ? false : true;
+  }
+
   crearFormulario(): void {
-    this.form = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(5)]],
-      apellido: ['', [Validators.required, this.validadores.noHerrera]],
-      correo: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+    this.form = this.fb.group(
+      {
+        nombre: ['', [Validators.required, Validators.minLength(5)]],
+        apellido: ['', [Validators.required, this.validadores.noHerrera]],
+        correo: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+          ],
         ],
-      ],
-      direccion: this.fb.group({
-        distrito: ['', Validators.required],
-        ciudad: ['', Validators.required],
-      }),
-      pasatiempos: this.fb.array([]),
-    });
+        pass1: ['', Validators.required],
+        pass2: ['', Validators.required],
+        direccion: this.fb.group({
+          distrito: ['', Validators.required],
+          ciudad: ['', Validators.required],
+        }),
+        pasatiempos: this.fb.array([]),
+      },
+      {
+        validators: this.validadores.passwordsIguales('pass1', 'pass2'),
+      }
+    );
   }
 
   cargarDataAlFormulario(): void {
@@ -106,8 +124,8 @@ export class ReactiveComponent implements OnInit {
     }
 
     // Posteo de información
-    this.form.reset({
-      nombre: 'Sin valor',
-    });
+    // this.form.reset({
+    //   nombre: 'Sin valor',
+    // });
   }
 }
