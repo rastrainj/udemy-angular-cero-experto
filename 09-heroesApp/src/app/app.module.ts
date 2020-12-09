@@ -8,9 +8,11 @@ import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HeroesComponent } from './pages/heroes/heroes.component';
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, HeroeComponent, HeroesComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
