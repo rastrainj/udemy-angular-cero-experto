@@ -33,10 +33,15 @@ export class ChatService {
   }
 
   login(proveedor: string): void {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    if (proveedor === 'google') {
+      this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    } else {
+      this.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+    }
   }
 
   logout() {
+    this.usuario = {};
     this.auth.signOut();
   }
 
