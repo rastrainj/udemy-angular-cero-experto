@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firechat-bb941": {
+      "hosting": {
+        "firechat": [
+          "firechat-bb941"
+        ]
+      }
+    }
+  }
+}
