@@ -10,10 +10,16 @@ import { HeroeModel } from '../../models/heroe.model';
 })
 export class HeroesComponent implements OnInit {
   heroes: HeroeModel[] = [];
+  cargando = false;
+
   constructor(private heroesService: HeroesService) {}
 
   ngOnInit(): void {
-    this.heroesService.getHeroes().subscribe((resp) => (this.heroes = resp));
+    this.cargando = true;
+    this.heroesService.getHeroes().subscribe((resp) => {
+      this.heroes = resp;
+      this.cargando = false;
+    });
   }
 
   borrarHeroe(heroe: HeroeModel, i: number): void {
