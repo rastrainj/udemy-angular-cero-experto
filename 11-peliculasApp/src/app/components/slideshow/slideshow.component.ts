@@ -10,15 +10,25 @@ import { Movie } from '../../interfaces/cartelera-response';
 export class SlideshowComponent implements OnInit, AfterViewInit {
   @Input() movies: Movie[];
 
+  mySwiper: Swiper;
+
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.movies);
+    // console.log(this.movies);
   }
 
   ngAfterViewInit(): void {
-    const mySwiper = new Swiper('.swiper-container', {
+    this.mySwiper = new Swiper('.swiper-container', {
       loop: true,
     });
+  }
+
+  onSlideNext(): void {
+    this.mySwiper.slideNext();
+  }
+
+  onSlidePrev(): void {
+    this.mySwiper.slidePrev();
   }
 }
