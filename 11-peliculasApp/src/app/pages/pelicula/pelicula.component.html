@@ -35,3 +35,9 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="cast.length > 0" class="row mt-5">
+  <div class="col">
+    <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
+  </div>
+</div>
