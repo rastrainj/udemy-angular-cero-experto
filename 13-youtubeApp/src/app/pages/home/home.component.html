@@ -7,7 +7,12 @@
     <div class="card-body">
       <h5 class="card-title">{{ video.title }}</h5>
       <p class="card-text"><strong>Autor:</strong> {{ video.channelTitle }}</p>
-      <button class="btn btn-outline-primary btn-block">Ver video</button>
+      <button
+        class="btn btn-outline-primary btn-block"
+        (click)="mostrarVideo(video)"
+      >
+        Ver video
+      </button>
     </div>
     <div class="card-footer">
       <small class="text-muted"
